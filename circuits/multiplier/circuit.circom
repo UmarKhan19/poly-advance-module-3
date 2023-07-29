@@ -11,28 +11,28 @@ signal input b;
 signal c;
 signal d;
 
-signal output f;
+signal output e;
 
 //Gates
 
-component andGate1 = AND();
+component orGate = OR();
 component notGate = NOT();
-component andGate2 = AND();
+component andGate = AND();
 
 //circuit logic
 
-andGate1.a <== a;
-andGate1.b <== b;
-c <== andGate1.out;
+orGate.b <== b;
+orGate.a <== a;
+c <== orGate.out;
 
-notGate.in <== c;
-d <== notGate.out;
+andGate.a <== c;
+andGate.b <== a;
+d <== andGate.out;
 
-andGate2.a <== d;
-andGate2.b <== a;
-f <== andGate2.out;
+notGate.in <== d;
+e <== notGate.out;
 
-
+log("Output e = ", e);
    
 }
 
@@ -50,6 +50,14 @@ template NOT() {
     signal output out;
 
     out <== 1 + in - 2*in;
+}
+
+template OR() {
+    signal input a;
+    signal input b;
+    signal output out;
+
+    out <== a + b - a*b;
 }
 
 component main = UmarCircuit();
