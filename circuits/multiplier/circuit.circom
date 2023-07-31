@@ -8,10 +8,10 @@ signal input a;
 signal input b;
 
 
-signal c;
-signal d;
+signal x;
+signal y;
 
-signal output e;
+signal output q;
 
 //Gates
 
@@ -21,18 +21,18 @@ component andGate = AND();
 
 //circuit logic
 
-orGate.b <== b;
-orGate.a <== a;
-c <== orGate.out;
+andGate.a <== a;
+andGate.b <== b;
+x <== andGate.out;
 
-andGate.a <== c;
-andGate.b <== a;
-d <== andGate.out;
+notGate.in <== b;
+y <== notGate.out;
 
-notGate.in <== d;
-e <== notGate.out;
+orGate.a <== x;
+orGate.b <== y;
+q <== orGate.out;
 
-log("Output e = ", e);
+log("Output q = ", q);
    
 }
 
